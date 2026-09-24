@@ -1,595 +1,707 @@
-file:///C:/Users/User/Downloads/Максимов/index.html
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astra Linux - Российская операционная система</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>Практика | Александр Максимов</title>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        :root {
-            --primary-color: #0b3d91;
-            --secondary-color: #e63946;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-            --gray-color: #6c757d;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            color: var(--dark-color);
-            background-color: #f5f7fa;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
             line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAV */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, .95);
+            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 1150px;
+            margin: auto;
         }
 
-        /* Header */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
+        .nav-container {
+            min-height: 70px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: #888;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .menu a:hover {
+            color: white;
+        }
+
+        .back-link {
+            color: #888;
+            font-size: 14px;
+            border: 1px solid #333;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: .2s;
+        }
+
+        .back-link:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* HEADER */
+
+        header {
+            min-height: 80vh;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(80, 80, 80, .25), transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            padding: 100px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .small-title {
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 8vw, 95px);
+            line-height: .95;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            color: #555;
+        }
+
+        .header-description {
+            max-width: 700px;
+            color: #999;
+            font-size: 20px;
+        }
+
+        .header-meta {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .meta-item .label {
+            color: #555;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .meta-item .value {
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .section-number {
+            color: #555;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 45px;
+            margin-bottom: 45px;
+            letter-spacing: -1px;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 30px;
+            background: #090909;
+            border: 1px solid #252525;
+            border-radius: 15px;
+            transition: .25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #999;
+            font-size: 15px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .about strong {
+            color: #fff;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #1c1c1c;
+            font-size: 15px;
+        }
+
+        .info-list li span:first-child {
+            color: #666;
+        }
+
+        .info-list li span:last-child {
+            color: #ddd;
+            text-align: right;
+        }
+
+        /* TIMELINE */
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            border-left: 1px solid #252525;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 45px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -46px;
+            top: 6px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #000;
+        }
+
+        .timeline-item .week {
+            color: #666;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: #999;
+            font-size: 16px;
+        }
+
+        /* TASKS */
+
+        .tasks {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .task {
+            padding: 30px;
+            background: #090909;
+            border: 1px solid #252525;
+            border-radius: 15px;
+        }
+
+        .task .num {
+            font-size: 40px;
+            color: #2a2a2a;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .task h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .task p {
+            color: #999;
+            font-size: 15px;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            padding: 10px 16px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* NOTES */
+
+        .notes {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .note {
+            padding: 30px;
+            background: #090909;
+            border: 1px solid #252525;
+            border-radius: 15px;
+        }
+
+        .note h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .note p {
+            color: #999;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 50px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .logo i {
-            font-size: 2.2rem;
-            color: var(--secondary-color);
-        }
+        /* MOBILE */
 
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
+        @media (max-width: 800px) {
 
-        .logo span {
-            color: var(--secondary-color);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 1.1rem;
-        }
-
-        nav ul li a:hover {
-            color: #ffcc00;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero section */
-        .hero {
-            background: linear-gradient(rgba(11, 61, 145, 0.9), rgba(11, 61, 145, 0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #c1121f;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Features section */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            position: relative;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        /* Editions section */
-        .editions {
-            background-color: var(--light-color);
-        }
-
-        .editions-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .edition-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-
-        .edition-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .edition-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .edition-header h3 {
-            font-size: 1.5rem;
-        }
-
-        .edition-body {
-            padding: 2rem;
-        }
-
-        .edition-body ul {
-            list-style-type: none;
-        }
-
-        .edition-body ul li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .edition-body ul li:last-child {
-            border-bottom: none;
-        }
-
-        .edition-body ul li i {
-            color: var(--secondary-color);
-            margin-right: 10px;
-        }
-
-        /* About section */
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        .about-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: #ffcc00;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: #ffcc00;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
+            .nav-container {
                 flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+                padding: 15px 0;
+                gap: 15px;
             }
-            
-            nav ul {
+
+            .menu {
+                gap: 12px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
-            nav ul li {
-                margin: 0.5rem 1rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-        }
 
-        @media (max-width: 576px) {
-            .hero {
-                padding: 4rem 0;
+            .menu a {
+                font-size: 12px;
             }
-            
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .tasks {
+                grid-template-columns: 1fr;
+            }
+
             section {
-                padding: 3rem 0;
+                padding: 70px 0;
             }
-            
-            .feature-card, .edition-card {
-                padding: 1.5rem;
+
+            .section-title {
+                font-size: 34px;
+            }
+
+            .header-meta {
+                gap: 25px;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <nav>
+        <div class="container nav-container">
+
             <div class="logo">
-                <i class="fab fa-linux"></i>
-                <h1>Astra <span>Linux</span></h1>
+                АМ · ПРАКТИКА
             </div>
-            <div class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Главная</a></li>
-                    <li><a href="#features">Особенности</a></li>
-                    <li><a href="#editions">Редакции</a></li>
-                    <li><a href="#about">О системе</a></li>
-                    <li><a href="#download" class="btn">Скачать</a></li>
-                </ul>
-            </nav>
+
+            <ul class="menu">
+                <li><a href="#about">О практике</a></li>
+                <li><a href="#place">Место</a></li>
+                <li><a href="#timeline">Ход</a></li>
+                <li><a href="#tasks">Задачи</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#results">Итоги</a></li>
+            </ul>
+
+            <a class="back-link" href="index.html">← Назад в резюме</a>
+
         </div>
+    </nav>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="container">
+
+            <div class="header-content">
+
+                <div class="small-title">
+                    Отчёт по учебной практике
+                </div>
+
+                <h1>
+                    Практика в<br>
+                    судебном участке
+                    <span>№&nbsp;__</span>
+                </h1>
+
+                <p class="header-description">
+                    Прохождение учебной практики студентом
+                    3 курса Люберецкого техникума имени Гагарина
+                    Максимовым Александром. Продолжительность —
+                    3 недели.
+                </p>
+
+                <div class="header-meta">
+
+                    <div class="meta-item">
+                        <div class="label">Студент</div>
+                        <div class="value">Максимов Александр</div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="label">Учебное заведение</div>
+                        <div class="value">Люберецкий техникум им. Гагарина</div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="label">Срок практики</div>
+                        <div class="value">3 недели</div>
+                    </div>
+
+                    <div class="meta-item">
+                        <div class="label">Место</div>
+                        <div class="value">Судебный участок</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h2>Российская операционная система</h2>
-            <p>Astra Linux — защищённая операционная система, разработанная для выполнения задач любой степени сложности в интересах государства и бизнеса, с повышенными требованиями к информационной безопасности.</p>
-            <a href="#download" class="btn">Скачать Astra Linux</a>
-        </div>
-    </section>
+    <!-- ================= ABOUT ================= -->
 
-    <!-- Features Section -->
-    <section id="features">
-        <div class="container">
-            <h2 class="section-title">Ключевые особенности</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Безопасность</h3>
-                    <p>Сертифицированная ОС для работы с информацией, составляющей государственную тайну. Встроенные механизмы защиты информации.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Стабильность</h3>
-                    <p>Длительный цикл поддержки, регулярные обновления и высокая надёжность системы в работе.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-certificate"></i>
-                    <h3>Сертификация</h3>
-                    <p>Соответствие требованиям регуляторов. Сертификаты ФСТЭК, Минобороны и ФСБ России.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Универсальность</h3>
-                    <p>Поддержка широкого спектра аппаратных платформ и приложений. Работа как на серверах, так и на рабочих станциях.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Editions Section -->
-    <section class="editions" id="editions">
-        <div class="container">
-            <h2 class="section-title">Редакции Astra Linux</h2>
-            <div class="editions-container">
-                <div class="edition-card">
-                    <div class="edition-header">
-                        <h3>Common Edition</h3>
-                    </div>
-                    <div class="edition-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Для широкого круга пользователей</li>
-                            <li><i class="fas fa-check"></i> Базовые средства защиты</li>
-                            <li><i class="fas fa-check"></i> Поддержка офисных приложений</li>
-                            <li><i class="fas fa-check"></i> Графическая среда Fly</li>
-                            <li><i class="fas fa-check"></i> Совместимость с популярным ПО</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="edition-card">
-                    <div class="edition-header">
-                        <h3>Special Edition</h3>
-                    </div>
-                    <div class="edition-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Для работы с гостайной</li>
-                            <li><i class="fas fa-check"></i> Межсетевые экраны и криптография</li>
-                            <li><i class="fas fa-check"></i> Контроль целостности и доступов</li>
-                            <li><i class="fas fa-check"></i> Средства аудита безопасности</li>
-                            <li><i class="fas fa-check"></i> Сертификация ФСТЭК и ФСБ</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="edition-card">
-                    <div class="edition-header">
-                        <h3>Server Edition</h3>
-                    </div>
-                    <div class="edition-body">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Для развёртывания серверов</li>
-                            <li><i class="fas fa-check"></i> Поддержка виртуализации</li>
-                            <li><i class="fas fa-check"></i> Средства резервного копирования</li>
-                            <li><i class="fas fa-check"></i> Мониторинг и управление</li>
-                            <li><i class="fas fa-check"></i> Высокая отказоустойчивость</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
     <section id="about">
+
         <div class="container">
-            <h2 class="section-title">О системе Astra Linux</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Надёжность и безопасность</h3>
-                    <p>Astra Linux — это российская операционная система, разработанная компанией "РусБИТех-Астра". Система создавалась с учётом требований российских регуляторов и специальных служб к защите информации.</p>
-                    <p>ОС обладает сертификатами соответствия требованиям по безопасности информации ФСТЭК России, Минобороны России и ФСБ России, что позволяет использовать её для обработки информации, составляющей государственную тайну.</p>
-                    <p>Система активно внедряется в государственных учреждениях, силовых структурах и корпоративном секторе как основа для создания защищённой ИТ-инфраструктуры.</p>
-                    <a href="#download" class="btn">Узнать больше</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Astra Linux интерфейс">
-                </div>
+
+            <div class="section-number">
+                01 — ABOUT
             </div>
+
+            <h2 class="section-title">
+                О практике
+            </h2>
+
+            <div class="about">
+
+                <div>
+                    <p>
+                        Учебная практика проходила в течение
+                        <strong>3 недель</strong> в судебном участке.
+                    </p>
+
+                    <p>
+                        Цель практики — закрепление и расширение
+                        теоретических знаний, полученных в техникуме,
+                        а также получение практических навыков работы
+                        с документами, делопроизводством и
+                        информационными системами судебного участка.
+                    </p>
+
+                    <p>
+                        Во время практики я ознакомился со структурой
+                        судебного участка, порядком приёма граждан,
+                        правилами оформления и хранения судебных
+                        документов, а также с основами работы
+                        в государственных информационных системах.
+                    </p>
+                </div>
+
+                <div>
+                    <ul class="info-list">
+                        <li><span>Студент</span><span>Максимов А.</span></li>
+                        <li><span>Специальность</span><span>Информационные технологии</span></li>
+                        <li><span>Курс</span><span>3 курс</span></li>
+                        <li><span>Место практики</span><span>Судебный участок</span></li>
+                        <li><span>Срок</span><span>3 недели</span></li>
+                        <li><span>Формат</span><span>Очная практика</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
         </div>
+
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- ================= PLACE ================= -->
+
+    <section id="place">
+
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Astra Linux</h3>
-                    <p>Российская операционная система для государственных структур и корпоративного сектора с повышенными требованиями к информационной безопасности.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Редакции</h3>
-                    <ul>
-                        <li><a href="#">Common Edition</a></li>
-                        <li><a href="#">Special Edition</a></li>
-                        <li><a href="#">Server Edition</a></li>
-                        <li><a href="#">Для встраиваемых систем</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Ресурсы</h3>
-                    <ul>
-                        <li><a href="#">Документация</a></li>
-                        <li><a href="#">Форум поддержки</a></li>
-                        <li><a href="#">Блог</a></li>
-                        <li><a href="#">Партнёры</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Контакты</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Россия, Москва</li>
-                        <li><i class="fas fa-globe"></i> www.astra-linux.com</li>
-                        <li><i class="fas fa-envelope"></i> info@astra-linux.com</li>
-                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
-                    </ul>
-                </div>
+
+            <div class="section-number">
+                02 — PLACE
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Astra Linux. Все права защищены. Разработано компанией "РусБИТех-Астра".</p>
+
+            <h2 class="section-title">
+                Место практики
+            </h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Судебный участок</h3>
+                    <p>
+                        Орган мирового правосудия, рассматривающий
+                        гражданские, административные и уголовные
+                        дела в пределах своей подсудности.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Структура</h3>
+                    <p>
+                        Мировой судья, помощник судьи, секретарь
+                        судебного заседания, делопроизводитель
+                        и специалисты аппарата.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Направления работы</h3>
+                    <p>
+                        Приём граждан, подготовка дел к рассмотрению,
+                        ведение протоколов, оформление судебных
+                        актов и работа с архивом.
+                    </p>
+                </div>
+
             </div>
+
         </div>
-    </footer>
 
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    </section>
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav ul');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-        });
+    <!-- ================= TIMELINE ================= -->
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if(window.innerWidth > 768) {
-                nav.style.display = 'flex';
-            } else {
-                nav.style.display = 'none';
-            }
-        });
+    <section id="timeline">
 
-        // Initialize mobile menu display
-        if(window.innerWidth <= 768) {
-            nav.style.display = 'none';
-            mobileMenuBtn.style.display = 'block';
-        }
-    </script>
-</body>
-</html>
+        <div class="container">
+
+            <div class="section-number">
+                03 — TIMELINE
+            </div>
+
+            <h2 class="section-title">
+                Ход практики
+            </h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="week">Неделя 1</div>
+                    <h3>Ознакомление с участком</h3>
+                    <p>
+                        Инструктаж по охране труда и внутреннему
+                        распорядку. Знакомство со структурой судебного
+                        участка, должностными обязанностями сотрудников
+                        и основными направлениями деятельности.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="week">Неделя 2</div>
+                    <h3>Работа с документами</h3>
+                    <p>
+                        Изучение порядка приёма, регистрации и хранения
+                        судебных документов. Помощь в подготовке дел
+                        к судебным заседаниям, работа с делопроизводством
+                        и ознакомление с номенклатурой дел.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="week">Неделя 3</div>
+                    <h3>Информационные системы и итоги</h3>
+                    <p>
+                        Работа с государственными информационными
+                        системами и электронным документооборотом.
+                        Обобщение полученных знаний, подготовка отчёта
+                        и оформление дневника практики.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= TASKS ================= -->
+
+    <section id="tasks">
+
+        <div class="container">
+
+            <div class="section-number">
+                04 — TASKS
+            </div>
+
+            <h2 class="section-title">
+                Выполненные задачи
+            </h2>
+
+            <div class="tasks">
+
+                <div class="task">
+                    <div class="num">01</div>
+                    <h3>Изучение структуры участка</h3>
+                    <p>
+                        Ознакомление с полномочиями мирового судьи,
+                        обязанностями сотрудников аппарата и порядком
+                        организации работы судебного участка.
+                    </p>
+                </div>
+
+                <div class="task">
+                    <div class="num">02</ помог уже опотным работникам маленькими задачами
